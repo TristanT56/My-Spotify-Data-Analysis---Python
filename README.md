@@ -5376,8 +5376,6 @@ vs
 ```python
 from plotly.subplots import make_subplots
 
-pyo.init_notebook_mode()
-
 categories = ['Danceability', 'Energy', 'Valence', 'Loudness','Instrumentalness', 'Acousticness']
 
 
@@ -5424,7 +5422,7 @@ fig.update_layout(legend=dict(
 
 
 fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\all_vs_tops.png')
-pyo.iplot(fig, filename = 'all_vs_tops_tracks')
+fig.show()
 ```
 
 ![allvstoptracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_141_0.png)
@@ -5564,8 +5562,6 @@ top5_top1artist_unique
 
 
 ```python
-# Set notebook mode to work in offline
-pyo.init_notebook_mode()
 
 categories = ['Dan.', 'Ener.', 'Val.', 'Loud.','Inst.', 'Acou.']
 
@@ -5683,7 +5679,7 @@ fig.update_layout(legend=dict(
 
 
 fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\tops_features.png')
-pyo.iplot(fig, filename = 'top_tracks')
+fig.show()
 
 ```
 ![toptracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_146_0.png)
@@ -5973,9 +5969,6 @@ night = spotify_features.loc[spotify_features['period'] == 'night_party']
 ```python
 #Let's compare the audio features of each period
 
-# Set notebook mode to work in offline
-pyo.init_notebook_mode()
-
 categories = ['Danceability', 'Energy', 'Valence', 'Loudness','Instrumentalness', 'Acousticness']
 
 
@@ -6039,8 +6032,7 @@ fig.update_layout(legend=dict(
 
 
 fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\audio_features_day.png')
-
-pyo.iplot(fig, filename = 'day_tracks')
+fig.show()
 
 ```
 
