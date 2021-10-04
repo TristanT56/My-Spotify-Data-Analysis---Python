@@ -5498,7 +5498,7 @@ fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\all_tracks.png
 fig.show()
 ```
 
-![alltracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_132_0.png)
+![alltracks_png](https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_132_1.png)
 
 Interpretation: 
     
