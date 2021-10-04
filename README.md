@@ -5965,3 +5965,1029 @@ pyo.iplot(fig, filename = 'all_vs_tops_tracks')
 ```
 
 ![allvstoptracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_141_0.png)
+
+Interpretation: 
+
+   We can see that my top tracks have more valence, more energy and are a little bit louder than the rest of the tracks I listened to. The danceability is the same. And my top tracks are a bit less acoustic and instrumental.
+
+   In other words, I'll probably like a track more if it puts me in a good mood (valence) and gives me energy. But it has to have vocals and not be acoustic.
+
+#### Let's see the audio features of my top tracks + my top track of my top artist:
+
+
+```python
+top5_top1artist_unique = top5_top1artist_features.drop_duplicates(subset = ['track','artist'])
+top5_top1artist_unique
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>247</th>
+      <td>2020-08-12 10:31:00</td>
+      <td>Last Train to London</td>
+      <td>Electric Light Orchestra</td>
+      <td>4.315017</td>
+      <td>0.702735</td>
+      <td>0.535569</td>
+      <td>0.972643</td>
+      <td>0.610962</td>
+      <td>0.000820</td>
+      <td>0.397989</td>
+      <td>121.493</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1746</th>
+      <td>2020-08-30 09:30:00</td>
+      <td>Gloria</td>
+      <td>The Lumineers</td>
+      <td>3.599617</td>
+      <td>0.460166</td>
+      <td>0.715447</td>
+      <td>0.662247</td>
+      <td>0.759490</td>
+      <td>0.000005</td>
+      <td>0.661306</td>
+      <td>78.211</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2225</th>
+      <td>2020-10-26 10:40:00</td>
+      <td>Nomalizo</td>
+      <td>Letta Mbulu</td>
+      <td>2.720633</td>
+      <td>0.840666</td>
+      <td>0.480691</td>
+      <td>0.726431</td>
+      <td>0.550627</td>
+      <td>0.002401</td>
+      <td>0.424119</td>
+      <td>98.276</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2257</th>
+      <td>2020-10-26 10:55:00</td>
+      <td>Sledgehammer</td>
+      <td>Peter Gabriel</td>
+      <td>5.413750</td>
+      <td>0.619501</td>
+      <td>0.685976</td>
+      <td>0.414983</td>
+      <td>0.791769</td>
+      <td>0.000000</td>
+      <td>0.024721</td>
+      <td>96.458</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2301</th>
+      <td>2020-10-26 11:02:00</td>
+      <td>Disco Inferno</td>
+      <td>The Trammps</td>
+      <td>3.564000</td>
+      <td>0.749108</td>
+      <td>0.847561</td>
+      <td>0.847433</td>
+      <td>0.845119</td>
+      <td>0.628898</td>
+      <td>0.026229</td>
+      <td>129.323</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2518</th>
+      <td>2020-11-13 10:16:00</td>
+      <td>Nothing But A Heartache</td>
+      <td>The Flirtations</td>
+      <td>2.737333</td>
+      <td>0.419738</td>
+      <td>0.941057</td>
+      <td>0.833754</td>
+      <td>0.803370</td>
+      <td>0.000273</td>
+      <td>0.000166</td>
+      <td>111.845</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# Set notebook mode to work in offline
+pyo.init_notebook_mode()
+
+categories = ['Dan.', 'Ener.', 'Val.', 'Loud.','Inst.', 'Acou.']
+
+
+
+fig = make_subplots(rows=2, cols=3, specs=[[{'type': 'polar'}]*3]*2)
+
+
+
+
+fig.add_trace(go.Scatterpolar(
+      r= top5_top1artist_unique.iloc[4, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Disco Inferno - The Trammps (Top 1)"
+), 1,1)
+
+
+fig.add_trace(go.Scatterpolar(
+      r=top5_top1artist_unique.iloc[3, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Sledgehammer - Peter Gabriel (Top 2)"
+), 1, 2)
+
+
+fig.add_trace(go.Scatterpolar(
+      r=top5_top1artist_unique.iloc[2, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Nomalizo - Letta Mbulu (Top 3)"
+), 1,3)
+
+fig.add_trace(go.Scatterpolar(
+      r=top5_top1artist_unique.iloc[5, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Nothing But A Heartache - The Flirtations (Top 4)"
+), 2,1)
+
+fig.add_trace(go.Scatterpolar(
+      r=top5_top1artist_unique.iloc[0, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Last Train to London - Electric Light Orchestra (Top 5)"
+), 2,2)
+
+fig.add_trace(go.Scatterpolar(
+      r= top5_top1artist_unique.iloc[1, 4:10],
+      theta=categories,
+      fill='toself',
+      name="Gloria - The Lumineers (Top 1 track of my top 1 artist)"
+), 2,3)
+
+
+
+
+
+
+fig.update_layout(
+    title = "Audio features of my top tracks",
+    
+    polar=dict(
+    angularaxis_showticklabels=True,
+    radialaxis_showticklabels=True,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+    
+    polar2=dict(
+    angularaxis_showticklabels=False,
+    radialaxis_showticklabels=False,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+    
+    polar3=dict(
+    angularaxis_showticklabels=False,
+    radialaxis_showticklabels=False,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+    
+    polar4=dict(
+    angularaxis_showticklabels=False,
+    radialaxis_showticklabels=False,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+    
+    polar5=dict(
+    angularaxis_showticklabels=False,
+    radialaxis_showticklabels=False,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+    
+    polar6=dict(
+    angularaxis_showticklabels=False,
+    radialaxis_showticklabels=False,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+  showlegend=True)
+
+
+
+fig.update_layout(legend=dict(
+    orientation="h",
+    yanchor="bottom",
+    y=-0.8,
+    xanchor="left",
+    x=0
+))
+
+
+fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\tops_features.png')
+pyo.iplot(fig, filename = 'top_tracks')
+
+```
+![toptracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_146_0.png)
+
+Interpretation: 
+
+   Here again we can see that my tastes are very diverse. My top tracks do not match each other, they each have their own type of audio features. However, they all have either a good valence, a lot of energy or a good danceability score and they are all loud. Disco Inferno has moments with less vocals. Nomalizo, Last Train To London and Gloria are more acoustic.
+
+### 4 - The audio features corresponding to the tracks I listen to in the morning, afternoon, evening and night/party: <a class="anchor" id="section_5_4"></a>
+
+
+```python
+#Let's set datetime as index 
+spotify_features.set_index('datetime', inplace = True)
+spotify_features.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-07-16 15:43:00</th>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.314000</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2020-08-15 19:14:00</th>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311583</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2020-08-17 13:01:00</th>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311533</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2020-08-23 15:41:00</th>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311450</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2020-08-25 14:27:00</th>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.314000</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+#Let's use the datetimeindex to find the hour of listening
+spotify_features.reset_index(inplace= True)
+spotify_features['hour'] = pd.DatetimeIndex(spotify_features["datetime"]).hour
+spotify_features.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+      <th>hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-07-16 15:43:00</td>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.314000</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-08-15 19:14:00</td>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311583</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-08-17 13:01:00</td>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311533</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-08-23 15:41:00</td>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.311450</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-08-25 14:27:00</td>
+      <td>L'Orchestrina</td>
+      <td>Paolo Conte</td>
+      <td>3.314000</td>
+      <td>0.739596</td>
+      <td>0.822154</td>
+      <td>0.755892</td>
+      <td>0.653855</td>
+      <td>0.000191</td>
+      <td>0.580904</td>
+      <td>117.47</td>
+      <td>1</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+#Let's create a function to create the column period (values: morning/afternoon/evening/night_party)
+def periodofday(x):
+    if (x >= 6) and (x < 12):
+        return 'morning'
+    elif (x >= 12) and (x < 20 ):
+        return 'afternoon'
+    elif (x >= 20) or (x < 1):
+        return'evening'
+    elif (x >= 1) and (x < 6):
+        return'night_party'
+
+spotify_features['period'] = spotify_features['hour'].apply(periodofday)
+spotify_features['period'] = pd.Categorical(spotify_features['period'], ['morning', 'afternoon', 'evening', 'night_party'])
+spotify_features['period'].value_counts()
+```
+
+
+
+
+    afternoon      2324
+    morning        1113
+    evening         950
+    night_party     251
+    Name: period, dtype: int64
+
+
+
+
+```python
+#Let's create  a table for each period
+morning = spotify_features.loc[spotify_features['period'] == 'morning']
+afternoon = spotify_features.loc[spotify_features['period'] == 'afternoon']
+evening = spotify_features.loc[spotify_features['period'] == 'evening']
+night = spotify_features.loc[spotify_features['period'] == 'night_party']
+```
+
+
+```python
+#Let's compare the audio features of each period
+
+# Set notebook mode to work in offline
+pyo.init_notebook_mode()
+
+categories = ['Danceability', 'Energy', 'Valence', 'Loudness','Instrumentalness', 'Acousticness']
+
+
+
+fig = make_subplots(rows=1, cols=1, specs=[[{'type': 'polar'}]])
+
+
+fig.add_trace(go.Scatterpolar(
+      r= night.iloc[:, 4:10].mean(),
+      theta=categories,
+      fill='toself',
+      name='Night (party): 1 - 6H'
+), 1,1)
+
+
+fig.add_trace(go.Scatterpolar(
+      r= evening.iloc[:, 4:10].mean(),
+      theta=categories,
+      fill='toself',
+      name='Evening: 20 - 1H'
+), 1,1)
+
+
+fig.add_trace(go.Scatterpolar(
+      r= afternoon.iloc[:, 4:10].mean(),
+      theta=categories,
+      fill='toself',
+      name='Afternoon: 12 - 20H'
+), 1,1)
+
+
+fig.add_trace(go.Scatterpolar(
+      r= morning.iloc[:, 4:10].mean(),
+      theta=categories,
+      fill='toself',
+      name='Morning: 6 - 12H'
+), 1,1)
+
+
+
+
+fig.update_layout(
+    title = "Audio features by periods of the day",
+    
+    polar=dict(
+    angularaxis_showticklabels=True,
+    radialaxis_showticklabels=True,
+    radialaxis=dict(
+     visible=True,
+      range=[0, 1])),
+  showlegend=True)
+
+
+fig.update_layout(legend=dict(
+    orientation="h",
+    yanchor="bottom",
+    y=-0.3,
+    xanchor="left",
+    x=0
+))
+
+
+fig.write_image(r'C:\Users\Tristan\Documents\DATA\spotify_project\audio_features_day.png')
+
+pyo.iplot(fig, filename = 'day_tracks')
+
+```
+
+![daytracks_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_154_0.png)
+
+Interpretation: 
+
+   It can be seen that as the day progresses, I listen to music with more valence, more energy and that are more danceable. I also seem to listen to more acoustic music in the morning (and afternoon) than in the evening and night/party.
+    
+    
+   So if I want music for the morning, it should be a track with a high score for acousticness and a low score for other features (compared to all the tracks I have listened to).
+    For the night it should be a track with a low score for acousticness and high score for the other features (compared to all the tracks I have listened to).
+    For the afternoon and evening it should be between those two extremes.
+    
+    
+   That is why I will use:
+   
+ - for the morning, audio features that are under the average (above for acousticness) of the morning audio features.
+ - for the afternoon, audio features that are between the quartile 1 and quartile 3 of the afternoon audio features.
+ - for the afternoon, audio features that are between the quartile 1 and quartile 3 of the afternoon audio features.
+ - for the night/party, audio features that are above the average (under for acousticness) of the night audio features.
+
+### 5 - Using these findings and only the audio features, let's find a track I might like to listen to in the morning/afternoon/evening/and during a party at night: <a class="anchor" id="section_5_5"></a>
+
+
+```python
+morning_example = spotify_features.loc[(spotify_features.danceability < morning.danceability.mean() ) &
+                       (spotify_features.energy < morning.energy.mean() ) &
+                       (spotify_features.valence < morning.valence.mean()) &
+                       (spotify_features.valence < morning.loudness.mean()) &
+                       (spotify_features.instrumentalness < morning.instrumentalness.mean() )&
+                       (spotify_features.acousticness > morning.acousticness.mean() )
+                       ].reset_index().drop_duplicates(subset=['track','artist']).sample(n=1,random_state=3)
+
+morning_example
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+      <th>hour</th>
+      <th>period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>308</th>
+      <td>3983</td>
+      <td>2021-05-06 13:07:00</td>
+      <td>To The Sea</td>
+      <td>Jack Johnson</td>
+      <td>3.49935</td>
+      <td>0.539834</td>
+      <td>0.429878</td>
+      <td>0.510732</td>
+      <td>0.68128</td>
+      <td>0.00005</td>
+      <td>0.566833</td>
+      <td>160.393</td>
+      <td>1</td>
+      <td>13</td>
+      <td>afternoon</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+afternoon_example = spotify_features.loc[(spotify_features.danceability > afternoon.danceability.quantile(0.25) ) &
+                       (spotify_features.danceability < afternoon.danceability.quantile(0.75) ) &
+                       (spotify_features.energy > afternoon.energy.quantile(0.25) ) &
+                       (spotify_features.energy < afternoon.energy.quantile(0.75) ) &
+                       (spotify_features.valence > afternoon.valence.quantile(0.25) ) &
+                       (spotify_features.valence < afternoon.valence.quantile(0.75)) &
+                       (spotify_features.loudness > afternoon.loudness.quantile(0.25) )&
+                       (spotify_features.loudness < afternoon.loudness.quantile(0.75) )&
+                       (spotify_features.instrumentalness > afternoon.instrumentalness.quantile(0.25) )&
+                       (spotify_features.instrumentalness < afternoon.instrumentalness.quantile(0.75) )&
+                       (spotify_features.acousticness > afternoon.acousticness.quantile(0.25) )&
+                       (spotify_features.acousticness < afternoon.acousticness.quantile(0.75) )
+                       ].reset_index().drop_duplicates(subset=['track','artist']).sample(n=1,random_state=1234)
+
+afternoon_example
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+      <th>hour</th>
+      <th>period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>57</th>
+      <td>1566</td>
+      <td>2020-08-19 23:58:00</td>
+      <td>Knee Socks</td>
+      <td>Arctic Monkeys</td>
+      <td>4.292717</td>
+      <td>0.629013</td>
+      <td>0.54065</td>
+      <td>0.58649</td>
+      <td>0.668653</td>
+      <td>0.003025</td>
+      <td>0.123616</td>
+      <td>97.975</td>
+      <td>0</td>
+      <td>23</td>
+      <td>evening</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+evening_example = spotify_features.loc[(spotify_features.danceability > evening.danceability.quantile(0.25) ) &
+                       (spotify_features.danceability < evening.danceability.quantile(0.75) ) &
+                       (spotify_features.energy > evening.energy.quantile(0.25) ) &
+                       (spotify_features.energy < evening.energy.quantile(0.75) ) &
+                       (spotify_features.valence > evening.valence.quantile(0.25) ) &
+                       (spotify_features.valence < evening.valence.quantile(0.75)) &
+                       (spotify_features.loudness > evening.loudness.quantile(0.25) )&
+                       (spotify_features.loudness < evening.loudness.quantile(0.75) )&
+                       (spotify_features.instrumentalness > evening.instrumentalness.quantile(0.25) )&
+                       (spotify_features.instrumentalness < evening.instrumentalness.quantile(0.75) )&
+                       (spotify_features.acousticness > evening.acousticness.quantile(0.25) )&
+                       (spotify_features.acousticness < evening.acousticness.quantile(0.75) )
+                       ].reset_index().drop_duplicates(subset=['track','artist']).sample(n=1,random_state=98765)
+
+evening_example
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+      <th>hour</th>
+      <th>period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>44</th>
+      <td>3250</td>
+      <td>2021-03-08 16:46:00</td>
+      <td>Natural Blues</td>
+      <td>Moby</td>
+      <td>2.178883</td>
+      <td>0.64566</td>
+      <td>0.650407</td>
+      <td>0.67803</td>
+      <td>0.685266</td>
+      <td>0.052183</td>
+      <td>0.048942</td>
+      <td>107.992</td>
+      <td>0</td>
+      <td>16</td>
+      <td>afternoon</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+night_party_example =  spotify_features.loc[(spotify_features.danceability > night.danceability.mean() ) &
+                       (spotify_features.energy > night.energy.mean() ) &
+                       (spotify_features.valence > night.valence.mean()) &
+                       (spotify_features.valence > night.loudness.mean()) &
+                       (spotify_features.instrumentalness > night.instrumentalness.mean() )&
+                       (spotify_features.acousticness < night.acousticness.mean() )
+                       ].reset_index().drop_duplicates(subset=['track','artist']).sample(n=1,random_state=125631)
+night_party_example
+
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>datetime</th>
+      <th>track</th>
+      <th>artist</th>
+      <th>min_played</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>valence</th>
+      <th>loudness</th>
+      <th>instrumentalness</th>
+      <th>acousticness</th>
+      <th>tempo</th>
+      <th>mode</th>
+      <th>hour</th>
+      <th>period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>147</th>
+      <td>3091</td>
+      <td>2021-01-15 02:37:00</td>
+      <td>In Degrees - Purple Disco Machine Remix</td>
+      <td>Foals</td>
+      <td>4.0534</td>
+      <td>0.841855</td>
+      <td>0.767276</td>
+      <td>0.90846</td>
+      <td>0.771013</td>
+      <td>0.435551</td>
+      <td>0.003817</td>
+      <td>121.986</td>
+      <td>1</td>
+      <td>2</td>
+      <td>night_party</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Results:
+
+So the tracks for my day could be:
+
+ - Morning (6 - 12H):  'To The Sea'  from  'Jack Johnson'
+ - Afternoon (12 - 20H):  'Knee Socks'  from  'Arctic Monkeys'
+ - Evening (20 - 1H):  'Natural Blues'  from  'Moby'
+ - During a party at night (1 - 6H):  'In Degrees'  from  'Foals - Purple Disco Machine Remix'
+    
+Comment: Indeed, this could be what I listen to during different times of the day (and at a party in the night).
+
+## Conclusion <a class="anchor" id="chapter6"></a>
+
+We have seen in the exploratory data analysis (EDA) as well as in the result of the analysis that my musical tastes are very diversified. Indeed, I like to listen to quiet music like 100% piano music, louder music like rock band music, music with vocals but sometimes also music without any vocals like electro/techno music. I have a small preference for music that puts me in a good mood and gives me energy like my favourite track 'Disco Inferno', but I also like melancholic or more acoustic music like the tracks by my favourite artist 'The Lumineers'. For example, I love to listen to 'The Lumineers' when I'm working, it helps me to concentrate. 
+
+
+I seem to listen to more music in the summer or during the Christmas/New Year period. During the week we saw that I listen to more music on Saturdays and less on Thursdays. Also, it was interesting to see that between Monday and Friday I listen to the most music during my launch break (around 11H, 12H, 13H, 14H) and at the weekend it's clearly Saturday afternoon after 17H that I listen to Spotify the most.
+
+
+Finally, we found a pattern with my musical tastes and audio characteristics that I prefer during the day. We saw that as the day progresses, I listen to music with good valence, good energy, more danceable and less acoustic. We also conducted an interesting experiment to find a song for each period of the day that I might like to listen to, simply by selecting a song from a certain range of audio characteristics. The result is indeed relevant as the four tracks chosen could really match what I like to listen to at each time of the day.
+
+
+Comment: To be even more precise and relevant, we need to have more information about the tracks such as the genre of the track. 
+
+
+```python
+from IPython.display import Image
+Image(r'C:\Users\Tristan\Documents\DATA\spotify_project\spotify_lists.png')
+```
+
+
+![sumup_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_164_0.png)
+    
+
