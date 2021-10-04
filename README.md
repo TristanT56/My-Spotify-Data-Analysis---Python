@@ -181,7 +181,7 @@ print(spotify_tt.min_played.value_counts().sort_index().head(10))
 
 
 ```python
-#These results are strange, let's analise all that:
+#These results are strange, let's analyse all that:
 from matplotlib import pyplot as plt
 import seaborn as sns
 fig, ax = plt.subplots()
