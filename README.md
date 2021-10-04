@@ -4267,7 +4267,7 @@ plt.axis(False)
 
 
 
-![wctop100_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_113_0.png)
+![wctop100_png](https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_113_1.png)
     
 
 
