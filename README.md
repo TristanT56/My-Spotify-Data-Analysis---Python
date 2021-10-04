@@ -81,7 +81,7 @@ import pandas as pd
 spotify_tt = pd.read_json(r'C:\Users\Tristan\Documents\DATA\spotify_project\StreamingHistory0.json', orient = 'records')
 spotify_tt.head()
 ```
-
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -260,19 +260,6 @@ spotify_tt[spotify_tt['min_played'] > 8].head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
