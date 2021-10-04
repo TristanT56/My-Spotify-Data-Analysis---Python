@@ -217,13 +217,9 @@ ax.set_ylabel('Nb of tracks')
 
 
 
-    Text(0, 0.5, 'Nb of tracks')
 
 
-
-
-    
-![png](output_8_1.png)
+![durationtrack_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_8_1.png)
     
 
 
@@ -1352,9 +1348,7 @@ plt.subplots_adjust(right=1.5, top= 1.5 , hspace=0.4)
 plt.show()
 ```
 
-
-    
-![png](output_45_0.png)
+![EDAtable1_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_45_0.png)
     
 
 
@@ -1514,8 +1508,7 @@ plt.show()
 ```
 
 
-    
-![png](output_52_0.png)
+![EDA1table21_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_52_0.png)
     
 
 
@@ -1533,9 +1526,7 @@ plt.subplots_adjust(right=1.5, top= 0.75 , wspace=0.3, hspace=0.3)
 plt.show()
 ```
 
-
-    
-![png](output_53_0.png)
+![EDA1table22_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_53_0.png)
     
 
 
@@ -3917,8 +3908,7 @@ plt.show()
 ```
 
 
-    
-![png](output_88_0.png)
+![corrmatrix_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_88_0.png)
     
 
 
@@ -3954,9 +3944,7 @@ plt.subplots_adjust(right=2, top= 1.5 , wspace=0.3, hspace=0.3)
 plt.show()
 ```
 
-
-    
-![png](output_92_0.png)
+![EDA2table21_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_92_0.png)
     
 
 
@@ -3975,9 +3963,7 @@ plt.subplots_adjust(right=1.5, top= 0.75 , wspace=0.3, hspace=0.3)
 plt.show()
 ```
 
-
-    
-![png](output_93_0.png)
+![EDA2table22_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_93_0.png)
     
 
 
@@ -4206,8 +4192,7 @@ plt.show()
 ```
 
 
-    
-![png](output_101_0.png)
+![artists1_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_101_0.png)
     
 
 
@@ -4318,8 +4303,7 @@ plt.show()
 ```
 
 
-    
-![png](output_103_0.png)
+![artists2_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_103_0.png)
     
 
 
@@ -4444,7 +4428,7 @@ plt.show()
 
 
     
-![png](output_106_0.png)
+![tracks1_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_106_0.png)
     
 
 
@@ -4566,8 +4550,7 @@ plt.show()
 ```
 
 
-    
-![png](output_108_0.png)
+![tracks2_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_108_0.png)
     
 
 
@@ -4681,8 +4664,7 @@ plt.show()
 ```
 
 
-    
-![png](output_111_0.png)
+![trackartist1_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_111_0.png)
     
 
 
@@ -4705,13 +4687,7 @@ plt.axis(False)
 
 
 
-    (-0.5, 999.5, 599.5, -0.5)
-
-
-
-
-    
-![png](output_113_1.png)
+![wctop100_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_113_0.png)
     
 
 
@@ -4857,8 +4833,7 @@ plt.show()
 ```
 
 
-    
-![png](output_116_0.png)
+![months_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_116_0.png)
     
 
 
@@ -4964,8 +4939,7 @@ plt.show()
 ```
 
 
-    
-![png](output_120_0.png)
+![days_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_120_0.png)
     
 
 
@@ -5289,8 +5263,7 @@ plt.show()
 ```
 
 
-    
-![png](output_124_0.png)
+![hours_png]( https://github.com/TristanT56/My-Spotify-Data-Analysis---Python/blob/main/Images%20for%20Readme%20markdown/output_124_0.png)
     
 
 
